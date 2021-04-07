@@ -9,10 +9,17 @@ class Sudoku(object):
         self.grid = grid
 
     def show(self) -> None:
-        for x in range(9):
-            for y in range(9):
-                print(self.grid[x][y], end="  ")
-            print()
+        grid = ""
+
+        for y in range(9):
+            for x in range(9):
+                spacer = "  " if (x+1) % 3 else "  " * 2
+                grid += str(self.grid[y][x]) + spacer
+
+            liner = "\n" if (y+1) % 3 else "\n" * 2
+            grid += liner
+
+        print(grid.strip())
 
 
 def main():
