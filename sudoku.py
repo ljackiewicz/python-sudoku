@@ -14,6 +14,8 @@ class Sudoku(object):
 
         self.grid = grid
 
+        self._solution = None
+
     def _possible(self, y: int, x: int, digit: int) -> bool:
         """Checks if digit can be placed in x,y position."""
         for i in range(9):
@@ -46,21 +48,34 @@ class Sudoku(object):
                             self.grid[y][x] = 0
                     return
 
-        self.show()
+        if self._solution is None:
+            self._solution = [list(row) for row in self.grid]
+        else:
+            raise Exception("Found multiple solutions for given grid.")
 
-    def show(self) -> None:
+    def solve_puzzle(self) -> None:
+        """Wrapper method for solve and print Sudoku puzzle."""
+        self.solve()
+
+        if self._solution:
+            self.show(self._solution)
+        else:
+            raise Exception("No solution was found for the given grid.")
+
+    @staticmethod
+    def show(grid) -> None:
         """Prints sudoku grid in nice format."""
-        grid = ""
+        formatted_grid = ""
 
         for y in range(9):
             for x in range(9):
                 spacer = "  " if (x+1) % 3 else "  " * 2
-                grid += str(self.grid[y][x]) + spacer
+                formatted_grid += str(grid[y][x]) + spacer
 
             liner = "\n" if (y+1) % 3 else "\n" * 2
-            grid += liner
+            formatted_grid += liner
 
-        print(grid.strip())
+        print(formatted_grid.strip())
 
 
 def main():
@@ -80,7 +95,7 @@ def main():
 
     sudoku = Sudoku(grid)
 
-    sudoku.solve()
+    sudoku.solve_puzzle()
 
 
 if __name__ == "__main__":
