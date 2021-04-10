@@ -63,7 +63,7 @@ class Sudoku(object):
             raise Exception("No solution was found for the given grid.")
 
     @staticmethod
-    def show(grid) -> None:
+    def show(grid: list) -> None:
         """Prints sudoku grid in nice format."""
         formatted_grid = ""
 

@@ -4,6 +4,7 @@
 Project prepared for educational purposes. It is intended to help expand and organize the current knowledge related to Python.
 
 ## Usage
+#### Running project
 ```shell
 python3 sudoku.py
 
@@ -11,4 +12,9 @@ python3 sudoku.py
 
 chmod u+x sudoku.py
 ./sudoku.py
+```
+
+#### Running unit tests
+```shell
+python3 -m unittest
 ```
