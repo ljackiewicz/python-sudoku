@@ -25,13 +25,25 @@ class TestSudoku(unittest.TestCase):
         )
 
     def test_possible_in_row(self):
+        """
+        Tests if _possible method correctly detects a possibility to place
+        specified digit in row.
+        """
         self.assertTrue(self.sudoku._possible(7, 2, 2))
         self.assertFalse(self.sudoku._possible(7, 2, 1))
 
     def test_possible_in_column(self):
+        """
+        Tests if _possible method correctly detects a possibility to place
+        specified digit in column.
+        """
         self.assertTrue(self.sudoku._possible(1, 6, 3))
         self.assertFalse(self.sudoku._possible(1, 6, 2))
 
     def test_possible_in_box(self):
+        """
+        Tests if _possible method correctly detects a possibility to place
+        specified digit in box.
+        """
         self.assertTrue(self.sudoku._possible(3, 5, 7))
         self.assertFalse(self.sudoku._possible(3, 5, 2))
