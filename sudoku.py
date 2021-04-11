@@ -16,6 +16,26 @@ class Sudoku(object):
 
         self._solution = None
 
+    def get_row(self, row_id: int):
+        """Takes row by number (id) in human-readable format."""
+        if type(row_id) is not int:
+            raise TypeError
+
+        if row_id not in range(1, 10):
+            raise Exception("There are only 9 rows in range from 1 to 9.")
+
+        return list(self.grid[row_id-1])
+
+    def get_column(self, column_id: int):
+        """Takes column by number (id) in human-readable format."""
+        if type(column_id) is not int:
+            raise TypeError
+
+        if column_id not in range(1, 10):
+            raise Exception("There are only 9 columns in range from 1 to 9.")
+
+        return [row[column_id-1] for row in self.grid]
+
     def _possible(self, y: int, x: int, digit: int) -> bool:
         """Checks if digit can be placed in x,y position."""
         for i in range(9):
