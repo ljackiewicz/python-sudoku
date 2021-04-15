@@ -12,6 +12,10 @@ class Sudoku(object):
         if grid is None:
             grid = []
 
+        if not self.validate_grid(grid):
+            raise Exception(
+                "The given grid is not provided in the correct format.")
+
         self.grid = grid
 
         self._solution = None
@@ -35,6 +39,58 @@ class Sudoku(object):
             raise Exception("There are only 9 columns in range from 1 to 9.")
 
         return [row[column_id-1] for row in self.grid]
+
+    @staticmethod
+    def validate_grid(grid: list) -> bool:
+        """Validates correctness of the input grid."""
+        if not grid:
+            return False
+
+        if type(grid) is not list:
+            return False
+
+        if len(grid) != 9:
+            return False
+
+        for row in grid:
+            if type(row) is not list:
+                return False
+
+            if len(row) != 9:
+                return False
+
+            for number in row:
+                if type(number) is not int:
+                    return False
+
+                if number not in range(0, 10):
+                    return False
+
+        # duplicates in rows
+        for row in grid:
+            for number in range(1, 10):
+                if row.count(number) > 1:
+                    return False
+
+        # duplicates in columns
+        for x in range(9):
+            column = [grid[y][x] for y in range(9)]
+
+            for number in range(1, 10):
+                if column.count(number) > 1:
+                    return False
+
+        # duplicates in subgrids (boxes)
+        for y in range(3):
+            for x in range(3):
+                subgrid = [grid[sub_y + (y * 3)][sub_x + (x * 3)]
+                           for sub_y in range(3) for sub_x in range(3)]
+
+                for number in range(1, 10):
+                    if subgrid.count(number) > 1:
+                        return False
+
+        return True
 
     def _possible(self, y: int, x: int, digit: int) -> bool:
         """Checks if digit can be placed in x,y position."""
