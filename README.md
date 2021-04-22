@@ -16,5 +16,5 @@ chmod u+x sudoku.py
 
 #### Running unit tests
 ```shell
-python3 -m unittest
+python3 -m unittest -v
 ```
