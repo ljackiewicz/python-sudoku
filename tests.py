@@ -136,6 +136,127 @@ class TestSudoku(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.sudoku.get_column("column")
 
+    def test_validate_grid_valid_grid(self):
+        """
+        Tests if validate_grid method returns True for a valid grid.
+        """
+        self.assertTrue(Sudoku.validate_grid(self.sudoku.grid))
+
+    def test_validate_grid_empty_grid(self):
+        """
+        Tests if validate_grid method returns False for an empty grid (empty
+        list).
+        """
+        self.assertFalse(Sudoku.validate_grid([]))
+
+    def test_validate_grid_valid_grid_type(self):
+        """
+        Tests if validate_grid method returns False for an invalid typed grid
+        (not a list).
+        """
+        self.assertFalse(Sudoku.validate_grid(self.sudoku))
+        self.assertFalse(Sudoku.validate_grid("sudoku"))
+        self.assertFalse(Sudoku.validate_grid(10))
+
+    def test_validate_grid_valid_grid_length(self):
+        """
+        Tests if validate_grid method returns False for an invalid length of
+        grid.
+        """
+        grid = [
+            [5, 3, 0,   0, 7, 0,   0, 0, 0],
+            [6, 0, 0,   1, 9, 5,   0, 0, 0],
+            [0, 9, 8,   0, 0, 0,   0, 6, 0],
+        ]
+
+        self.assertFalse(Sudoku.validate_grid(grid))
+
+    def test_validate_grid_valid_digits_type(self):
+        """
+        Tests if validate_grid method returns False for invalid digits type.
+        """
+        grid = self.sudoku.grid
+
+        row = [5, 6, 0,   8, '4', 7,   0, 0, 0]
+        grid[0] = row
+
+        self.assertFalse(Sudoku.validate_grid(grid))
+
+    def test_validate_grid_valid_digits_range(self):
+        """
+        Tests if validate_grid method returns False for invalid digits range
+        (digits out of range from 0 to 9).
+        """
+        grid = self.sudoku.grid
+
+        row = [5, 6, 0,   8, 4, 10,   0, 0, 0]
+        grid[0] = row
+
+        self.assertFalse(Sudoku.validate_grid(grid))
+
+    def test_validate_grid_duplicate_in_row(self):
+        """
+        Tests if validate_grid method returns False for grid with duplicates
+        in row.
+        """
+        grid = [
+            [5, 3, 0,   3., 7, 0,   0, 0, 0],
+            [6, 0, 0,   1, 9, 5,   0, 0, 0],
+            [0, 9, 8,   0, 0, 0,   0, 6, 0],
+
+            [8, 0, 0,   0, 6, 0,   0, 0, 3],
+            [4, 0, 0,   8, 0, 3,   0, 0, 1],
+            [7, 0, 0,   0, 2, 0,   0, 0, 6],
+
+            [0, 6, 0,   0, 0, 0,   2, 8, 0],
+            [0, 0, 0,   4, 1, 9,   0, 0, 5],
+            [0, 0, 0,   0, 8, 0,   0, 7, 9],
+        ]
+
+        self.assertFalse(Sudoku.validate_grid(grid))
+
+    def test_validate_grid_duplicate_in_column(self):
+        """
+        Tests if validate_grid method returns False for grid with duplicates
+        in column.
+        """
+        grid = [
+            [5, 3, 0,   0, 7, 0,   0, 0, 0],
+            [6, 0, 0,   1, 9, 5,   0, 0, 0],
+            [0, 9, 8,   0, 0, 0,   0, 6, 0],
+
+            [8, 0, 0,   0, 6, 0,   0, 0, 3],
+            [4, 0, 0,   8, 0, 3,   0, 0, 1],
+            [7, 0, 0,   0, 2, 0,   0, 0, 6],
+
+            [0, 6, 0,   0, 0, 0,   2, 8, 0],
+            [0, 0, 0,   4, 1, 9,   0, 0, 5],
+            [5., 0, 0,   0, 8, 0,   0, 7, 9],
+        ]
+
+        self.assertFalse(Sudoku.validate_grid(grid))
+
+    def test_validate_grid_duplicate_in_box(self):
+        """
+        Tests if validate_grid method returns False for grid with duplicates
+        in box (subgrid).
+        """
+        grid = [
+            [5, 3, 0,   0, 7, 0,   0, 0, 0],
+            [6, 0, 0,   1, 9, 5,   0, 0, 0],
+            [3., 9, 8,   0, 0, 0,   0, 6, 0],
+
+            [8, 0, 0,   0, 6, 0,   0, 0, 3],
+            [4, 0, 0,   8, 0, 3,   0, 0, 1],
+            [7, 0, 0,   0, 2, 0,   0, 0, 6],
+
+            [0, 6, 0,   0, 0, 0,   2, 8, 0],
+            [0, 0, 0,   4, 1, 9,   0, 0, 5],
+            [0, 0, 0,   0, 8, 0,   0, 7, 9],
+        ]
+
+        self.assertFalse(Sudoku.validate_grid(grid))
+
     def test_possible_in_row(self):
         """
         Tests if _possible method correctly detects a possibility to place
