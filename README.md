@@ -18,3 +18,11 @@ chmod u+x sudoku.py
 ```shell
 python3 -m unittest -v
 ```
+
+## General ToDos
+- [x] Simple sudoku solver
+- [x] Validation of input grid
+- [ ] Generating Sudoku Puzzles
+- [ ] Other solving algorithms
+- [ ] Assessment of the difficulty level of puzzle
+- [ ] Generating Sudoku Puzzle of specific difficulty level
