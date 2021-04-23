@@ -1,7 +1,9 @@
 # Python Sudoku Solver and Generator
 
-## Description
 Project prepared for educational purposes. It is intended to help expand and organize the current knowledge related to Python.
+
+## Description
+To be completed.
 
 ## Usage
 #### Preparing an environment (virtualenv)
@@ -31,10 +33,18 @@ chmod u+x sudoku.py
 python3 -m unittest -v
 ```
 
-## General ToDos
+## ToDos
+#### General ToDos
 - [x] Simple sudoku solver
 - [x] Validation of input grid
 - [ ] Generating Sudoku Puzzles
 - [ ] Other solving algorithms
 - [ ] Assessment of the difficulty level of puzzle
 - [ ] Generating Sudoku Puzzle of specific difficulty level
+
+#### Things to check out
+- Licensing
+- Badges
+- GitHub Actions
+- Unit Testing in Python
+- Building Python packages
