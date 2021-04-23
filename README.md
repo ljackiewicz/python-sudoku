@@ -4,6 +4,18 @@
 Project prepared for educational purposes. It is intended to help expand and organize the current knowledge related to Python.
 
 ## Usage
+#### Preparing an environment (virtualenv)
+```shell
+# creating virtual environment (venv)
+virtualenv venv
+
+# activating virtual environment
+source venv/bin/activate
+
+# installing requirements
+pip install -r requirements.txt
+```
+
 #### Running project
 ```shell
 python3 sudoku.py
