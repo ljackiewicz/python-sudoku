@@ -40,6 +40,20 @@ class Sudoku(object):
 
         return [row[column_id-1] for row in self.grid]
 
+    def get_box(self, box_id: int):
+        """Takes box (subgrid) by number (id) in human-readable format."""
+        if type(box_id) is not int:
+            raise TypeError
+
+        if box_id not in range(1, 10):
+            raise Exception("There are only 9 boxes in range from 1 to 9.")
+
+        y = (box_id - 1) // 3
+        x = (box_id - 1) % 3
+
+        return [self.grid[sub_y + (y * 3)][sub_x + (x * 3)]
+                for sub_y in range(3) for sub_x in range(3)]
+
     @staticmethod
     def validate_grid(grid: list) -> bool:
         """Validates correctness of the input grid."""

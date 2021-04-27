@@ -136,6 +136,48 @@ class TestSudoku(unittest.TestCase):
         with self.assertRaises(TypeError):
             self.sudoku.get_column("column")
 
+    def test_get_box(self):
+        """
+        Tests if the get_box method works correctly.
+        """
+        self.assertTrue(self.sudoku.get_box(1) == [5, 3, 0, 6, 0, 0, 0, 9, 8])
+        self.assertTrue(self.sudoku.get_box(2) == [0, 7, 0, 1, 9, 5, 0, 0, 0])
+        self.assertTrue(self.sudoku.get_box(3) == [0, 0, 0, 0, 0, 0, 0, 6, 0])
+        self.assertTrue(self.sudoku.get_box(4) == [8, 0, 0, 4, 0, 0, 7, 0, 0])
+        self.assertTrue(self.sudoku.get_box(5) == [0, 6, 0, 8, 0, 3, 0, 2, 0])
+        self.assertTrue(self.sudoku.get_box(6) == [0, 0, 3, 0, 0, 1, 0, 0, 6])
+        self.assertTrue(self.sudoku.get_box(7) == [0, 6, 0, 0, 0, 0, 0, 0, 0])
+        self.assertTrue(self.sudoku.get_box(8) == [0, 0, 0, 4, 1, 9, 0, 8, 0])
+        self.assertTrue(self.sudoku.get_box(9) == [2, 8, 0, 0, 0, 5, 0, 7, 9])
+
+    def test_get_box_raise_Exception(self):
+        """
+        Tests if get_box method raises an Exception when passed parameter out
+        of desire range.
+        """
+        with self.assertRaises(Exception):
+            self.sudoku.get_box(-5)
+
+        with self.assertRaises(Exception):
+            self.sudoku.get_box(0)
+
+        with self.assertRaises(Exception):
+            self.sudoku.get_box(10)
+
+    def test_get_box_raise_TypeError(self):
+        """
+        Tests if get_box method raises TypeError if a non-integer parameter is
+        passed.
+        """
+        with self.assertRaises(TypeError):
+            self.sudoku.get_box([1, 2, 3])
+
+        with self.assertRaises(TypeError):
+            self.sudoku.get_box('b')
+
+        with self.assertRaises(TypeError):
+            self.sudoku.get_box("box")
+
     def test_validate_grid_valid_grid(self):
         """
         Tests if validate_grid method returns True for a valid grid.
