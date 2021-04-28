@@ -12,10 +12,6 @@ class Sudoku(object):
         if grid is None:
             grid = []
 
-        if not self.validate_grid(grid):
-            raise Exception(
-                "The given grid is not provided in the correct format.")
-
         self.grid = grid
 
         self._solution = None
@@ -145,6 +141,10 @@ class Sudoku(object):
 
     def solve_puzzle(self) -> None:
         """Wrapper method for solve and print Sudoku puzzle."""
+        if not self.validate_grid():
+            raise Exception(
+                "The given grid is not provided in the correct format.")
+
         self.solve()
 
         if self._solution:
