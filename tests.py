@@ -8,26 +8,6 @@ from sudoku import Sudoku
 class TestSudoku(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.sudoku = Sudoku(
-            [
-                [5, 3, 0,   0, 7, 0,   0, 0, 0],
-                [6, 0, 0,   1, 9, 5,   0, 0, 0],
-                [0, 9, 8,   0, 0, 0,   0, 6, 0],
-
-                [8, 0, 0,   0, 6, 0,   0, 0, 3],
-                [4, 0, 0,   8, 0, 3,   0, 0, 1],
-                [7, 0, 0,   0, 2, 0,   0, 0, 6],
-
-                [0, 6, 0,   0, 0, 0,   2, 8, 0],
-                [0, 0, 0,   4, 1, 9,   0, 0, 5],
-                [0, 0, 0,   0, 8, 0,   0, 7, 9],
-            ]
-        )
-
-    def test_get_row(self):
-        """
-        Tests if the get_row method works correctly.
-        """
         grid = [
             [5, 3, 0,   0, 7, 0,   0, 0, 0],
             [6, 0, 0,   1, 9, 5,   0, 0, 0],
@@ -42,15 +22,21 @@ class TestSudoku(unittest.TestCase):
             [0, 0, 0,   0, 8, 0,   0, 7, 9],
         ]
 
-        self.assertTrue(self.sudoku.get_row(1) == grid[0])
-        self.assertTrue(self.sudoku.get_row(2) == grid[1])
-        self.assertTrue(self.sudoku.get_row(3) == grid[2])
-        self.assertTrue(self.sudoku.get_row(4) == grid[3])
-        self.assertTrue(self.sudoku.get_row(5) == grid[4])
-        self.assertTrue(self.sudoku.get_row(6) == grid[5])
-        self.assertTrue(self.sudoku.get_row(7) == grid[6])
-        self.assertTrue(self.sudoku.get_row(8) == grid[7])
-        self.assertTrue(self.sudoku.get_row(9) == grid[8])
+        self.sudoku = Sudoku(grid)
+
+    def test_get_row(self):
+        """
+        Tests if the get_row method works correctly.
+        """
+        self.assertTrue(self.sudoku.get_row(1) == [5, 3, 0, 0, 7, 0, 0, 0, 0])
+        self.assertTrue(self.sudoku.get_row(2) == [6, 0, 0, 1, 9, 5, 0, 0, 0])
+        self.assertTrue(self.sudoku.get_row(3) == [0, 9, 8, 0, 0, 0, 0, 6, 0])
+        self.assertTrue(self.sudoku.get_row(4) == [8, 0, 0, 0, 6, 0, 0, 0, 3])
+        self.assertTrue(self.sudoku.get_row(5) == [4, 0, 0, 8, 0, 3, 0, 0, 1])
+        self.assertTrue(self.sudoku.get_row(6) == [7, 0, 0, 0, 2, 0, 0, 0, 6])
+        self.assertTrue(self.sudoku.get_row(7) == [0, 6, 0, 0, 0, 0, 2, 8, 0])
+        self.assertTrue(self.sudoku.get_row(8) == [0, 0, 0, 4, 1, 9, 0, 0, 5])
+        self.assertTrue(self.sudoku.get_row(9) == [0, 0, 0, 0, 8, 0, 0, 7, 9])
 
     def test_get_row_raise_Exception(self):
         """
@@ -75,38 +61,24 @@ class TestSudoku(unittest.TestCase):
             self.sudoku.get_row([1, 2, 3])
 
         with self.assertRaises(TypeError):
-            self.sudoku.get_row('c')
+            self.sudoku.get_row('r')
 
         with self.assertRaises(TypeError):
-            self.sudoku.get_row("column")
+            self.sudoku.get_row("row")
 
     def test_get_column(self):
         """
         Tests if the get_column method works correctly.
         """
-        transpose_grid = [
-            [5, 6, 0,   8, 4, 7,   0, 0, 0],
-            [3, 0, 9,   0, 0, 0,   6, 0, 0],
-            [0, 0, 8,   0, 0, 0,   0, 0, 0],
-
-            [0, 1, 0,   0, 8, 0,   0, 4, 0],
-            [7, 9, 0,   6, 0, 2,   0, 1, 8],
-            [0, 5, 0,   0, 3, 0,   0, 9, 0],
-
-            [0, 0, 0,   0, 0, 0,   2, 0, 0],
-            [0, 0, 6,   0, 0, 0,   8, 0, 7],
-            [0, 0, 0,   3, 1, 6,   0, 5, 9],
-        ]
-
-        self.assertTrue(self.sudoku.get_column(1) == transpose_grid[0])
-        self.assertTrue(self.sudoku.get_column(2) == transpose_grid[1])
-        self.assertTrue(self.sudoku.get_column(3) == transpose_grid[2])
-        self.assertTrue(self.sudoku.get_column(4) == transpose_grid[3])
-        self.assertTrue(self.sudoku.get_column(5) == transpose_grid[4])
-        self.assertTrue(self.sudoku.get_column(6) == transpose_grid[5])
-        self.assertTrue(self.sudoku.get_column(7) == transpose_grid[6])
-        self.assertTrue(self.sudoku.get_column(8) == transpose_grid[7])
-        self.assertTrue(self.sudoku.get_column(9) == transpose_grid[8])
+        self.assertTrue(self.sudoku.get_column(1) == [5, 6, 0, 8, 4, 7, 0, 0, 0])
+        self.assertTrue(self.sudoku.get_column(2) == [3, 0, 9, 0, 0, 0, 6, 0, 0])
+        self.assertTrue(self.sudoku.get_column(3) == [0, 0, 8, 0, 0, 0, 0, 0, 0])
+        self.assertTrue(self.sudoku.get_column(4) == [0, 1, 0, 0, 8, 0, 0, 4, 0])
+        self.assertTrue(self.sudoku.get_column(5) == [7, 9, 0, 6, 0, 2, 0, 1, 8])
+        self.assertTrue(self.sudoku.get_column(6) == [0, 5, 0, 0, 3, 0, 0, 9, 0])
+        self.assertTrue(self.sudoku.get_column(7) == [0, 0, 0, 0, 0, 0, 2, 0, 0])
+        self.assertTrue(self.sudoku.get_column(8) == [0, 0, 6, 0, 0, 0, 8, 0, 7])
+        self.assertTrue(self.sudoku.get_column(9) == [0, 0, 0, 3, 1, 6, 0, 5, 9])
 
     def test_get_column_raise_Exception(self):
         """
