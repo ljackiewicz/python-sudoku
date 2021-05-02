@@ -154,23 +154,25 @@ class TestSudoku(unittest.TestCase):
         """
         Tests if validate_grid method returns True for a valid grid.
         """
-        self.assertTrue(Sudoku.validate_grid(self.sudoku.grid))
+        self.assertTrue(self.sudoku.validate_grid())
 
     def test_validate_grid_empty_grid(self):
         """
         Tests if validate_grid method returns False for an empty grid (empty
         list).
         """
-        self.assertFalse(Sudoku.validate_grid([]))
+        sudoku = Sudoku([])
+
+        self.assertFalse(sudoku.validate_grid())
 
     def test_validate_grid_valid_grid_type(self):
         """
         Tests if validate_grid method returns False for an invalid typed grid
         (not a list).
         """
-        self.assertFalse(Sudoku.validate_grid(self.sudoku))
-        self.assertFalse(Sudoku.validate_grid("sudoku"))
-        self.assertFalse(Sudoku.validate_grid(10))
+        sudoku = Sudoku("sudoku")
+
+        self.assertFalse(sudoku.validate_grid())
 
     def test_validate_grid_valid_grid_length(self):
         """
@@ -183,18 +185,20 @@ class TestSudoku(unittest.TestCase):
             [0, 9, 8,   0, 0, 0,   0, 6, 0],
         ]
 
-        self.assertFalse(Sudoku.validate_grid(grid))
+        sudoku = Sudoku(grid)
+
+        self.assertFalse(sudoku.validate_grid())
 
     def test_validate_grid_valid_digits_type(self):
         """
         Tests if validate_grid method returns False for invalid digits type.
         """
         grid = self.sudoku.grid
+        grid[0] = [5, 6, 0,   8, '4', 7,   0, 0, 0]
 
-        row = [5, 6, 0,   8, '4', 7,   0, 0, 0]
-        grid[0] = row
+        sudoku = Sudoku(grid)
 
-        self.assertFalse(Sudoku.validate_grid(grid))
+        self.assertFalse(sudoku.validate_grid())
 
     def test_validate_grid_valid_digits_range(self):
         """
@@ -202,11 +206,11 @@ class TestSudoku(unittest.TestCase):
         (digits out of range from 0 to 9).
         """
         grid = self.sudoku.grid
+        grid[0] = [5, 6, 0,   8, 4, 10,   0, 0, 0]
 
-        row = [5, 6, 0,   8, 4, 10,   0, 0, 0]
-        grid[0] = row
+        sudoku = Sudoku(grid)
 
-        self.assertFalse(Sudoku.validate_grid(grid))
+        self.assertFalse(sudoku.validate_grid())
 
     def test_validate_grid_duplicate_in_row(self):
         """
@@ -227,7 +231,9 @@ class TestSudoku(unittest.TestCase):
             [0, 0, 0,   0, 8, 0,   0, 7, 9],
         ]
 
-        self.assertFalse(Sudoku.validate_grid(grid))
+        sudoku = Sudoku(grid)
+
+        self.assertFalse(sudoku.validate_grid())
 
     def test_validate_grid_duplicate_in_column(self):
         """
@@ -248,7 +254,9 @@ class TestSudoku(unittest.TestCase):
             [5., 0, 0,   0, 8, 0,   0, 7, 9],
         ]
 
-        self.assertFalse(Sudoku.validate_grid(grid))
+        sudoku = Sudoku(grid)
+
+        self.assertFalse(sudoku.validate_grid())
 
     def test_validate_grid_duplicate_in_box(self):
         """
@@ -269,7 +277,9 @@ class TestSudoku(unittest.TestCase):
             [0, 0, 0,   0, 8, 0,   0, 7, 9],
         ]
 
-        self.assertFalse(Sudoku.validate_grid(grid))
+        sudoku = Sudoku(grid)
+
+        self.assertFalse(sudoku.validate_grid())
 
     def test_possible_in_row(self):
         """
