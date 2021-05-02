@@ -55,49 +55,30 @@ class Sudoku(object):
         if not self.grid:
             return False
 
-        if type(self.grid) is not list:
-            return False
-
-        if len(self.grid) != 9:
+        # grid type and length
+        if type(self.grid) is not list or len(self.grid) != 9:
             return False
 
         for row in self.grid:
-            if type(row) is not list:
+            # rows type and length
+            if type(row) is not list or len(row) != 9:
                 return False
 
-            if len(row) != 9:
-                return False
-
+            # numbers type and range
             for number in row:
-                if type(number) is not int:
+                if type(number) is not int or number not in range(0, 10):
                     return False
 
-                if number not in range(0, 10):
-                    return False
-
-        # duplicates in rows
-        for row in self.grid:
-            for number in range(1, 10):
-                if row.count(number) > 1:
-                    return False
-
-        # duplicates in columns
-        for x in range(9):
-            column = [self.grid[y][x] for y in range(9)]
+        # duplicates in row, column, box
+        for i in range(1, 10):
+            row = self.get_row(i)
+            column = self.get_column(i)
+            box = self.get_box(i)
 
             for number in range(1, 10):
-                if column.count(number) > 1:
+                if row.count(number) > 1 or column.count(number) > 1 or \
+                        box.count(number) > 1:
                     return False
-
-        # duplicates in subgrids (boxes)
-        for y in range(3):
-            for x in range(3):
-                subgrid = [self.grid[sub_y + (y * 3)][sub_x + (x * 3)]
-                           for sub_y in range(3) for sub_x in range(3)]
-
-                for number in range(1, 10):
-                    if subgrid.count(number) > 1:
-                        return False
 
         return True
 
