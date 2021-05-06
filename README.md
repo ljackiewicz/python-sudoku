@@ -1,6 +1,6 @@
 # Python Sudoku Solver and Generator
 
-Project prepared for educational purposes. It is intended to help expand and organize the current knowledge related to Python.
+Project prepared for educational purposes. It is intended to help expand and organize the current Python-around knowledge.
 
 ## Description
 To be completed.
@@ -42,8 +42,12 @@ python3 -m unittest -v
 - [ ] Assessment of the difficulty level of puzzle
 - [ ] Generating Sudoku Puzzle of specific difficulty level
 
+#### Minor ToDos
+- long and descriptive names for testing functions instead of docstrings
+- better project structure
+- simple tests for cli module
+
 #### Things to check out
-- Licensing
 - Badges
 - GitHub Actions
 - Unit Testing in Python
