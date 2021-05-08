@@ -1,9 +1,9 @@
 run:
-	python sudoku.py
+	poetry run python sudoku.py
 
 test:
-	python -m unittest -v
+	poetry run python -m unittest -v
 
 coverage:
-	coverage run -m	unittest -v
-	coverage report -m sudoku.py
+	poetry run coverage run -m	unittest -v
+	poetry run coverage report -m sudoku.py

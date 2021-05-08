@@ -1,4 +1,0 @@
-coverage==5.5
-fire==0.4.0
-six==1.16.0
-termcolor==1.1.0

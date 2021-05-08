@@ -6,21 +6,24 @@ Project prepared for educational purposes. It is intended to help expand and org
 To be completed.
 
 ## Usage
-#### Preparing an environment (virtualenv)
+#### Preparing an environment
 ```shell
-# creating virtual environment (venv)
-virtualenv venv
+# creating virtual environment
+poetry env use python
 
 # activating virtual environment
-source venv/bin/activate
+poetry shell  # runs new shell with activated virtual environment
+# or
+source $(poetry env info --path)/bin/activate  # for POSIX shell
+source {path_to_venv}\Scripts\activate.bat  # for Windows
 
-# installing requirements
-pip install -r requirements.txt
+# installing dependencies
+poetry install
 ```
 
 #### Running project
 ```shell
-python3 sudoku.py
+poetry run python sudoku.py
 
 # or
 
@@ -30,7 +33,7 @@ chmod u+x sudoku.py
 
 #### Running unit tests
 ```shell
-python3 -m unittest -v
+poetry run python -m unittest -v
 ```
 
 ## ToDos
