@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+
 import unittest
 
-from sudoku import Sudoku
+from sudoku.base import Sudoku
 
 
 class TestSudoku(unittest.TestCase):

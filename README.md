@@ -23,12 +23,13 @@ poetry install
 
 #### Running project
 ```shell
-poetry run python sudoku.py
+poetry run python sudoku/base.py
 
 # or
 
-chmod u+x sudoku.py
-./sudoku.py
+cd sudoku
+chmod u+x base.py
+./base.py
 ```
 
 #### Running unit tests

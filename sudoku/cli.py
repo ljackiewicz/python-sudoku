@@ -15,7 +15,7 @@ Format of INPUT_GRID: nine nine-digit numbers separated by commas
 
 import fire
 
-from sudoku import Sudoku, SudokuGridError
+from sudoku.base import Sudoku, SudokuGridError
 
 
 class SudokuCLI(object):
