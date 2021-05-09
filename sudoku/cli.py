@@ -50,5 +50,5 @@ class SudokuCLI(object):
         sudoku.solve_puzzle()
 
 
-if __name__ == "__main__":
+def main():
     fire.Fire(SudokuCLI, name='sudoku')
