@@ -5,6 +5,10 @@ description = "Sudoku Solver and Generator"
 authors = ["Łukasz Jackiewicz <lukasz.jackiewicz94@gmail.com>"]
 license = "MIT"
 
+packages = [
+    { include = "sudoku" }
+]
+
 [tool.poetry.dependencies]
 python = "^3.9"
 fire = "^0.4.0"
