@@ -8,6 +8,7 @@ sudoku COMMAND INPUT_GRID
 
 sudoku show INPUT_GRID
 sudoku solve INPUT_GRID
+sudoku validate INPUT_GRID
 
 Format of INPUT_GRID: nine nine-digit numbers separated by commas
 530070000,600195000,098000060,800060003,400803001,700020006,060000280,000419005,000080079
@@ -48,6 +49,16 @@ class SudokuCLI(object):
         sudoku = Sudoku(grid)
 
         sudoku.solve_puzzle()
+
+    def validate(self, input_grid):
+        """Validates correctness of the grid."""
+        grid = self._parse_input_grid(input_grid)
+        sudoku = Sudoku(grid)
+
+        if sudoku.validate_grid():
+            print("Valid grid")
+        else:
+            print("Invalid grid")
 
 
 def main():
