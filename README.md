@@ -41,8 +41,6 @@ poetry run python -m unittest -v
 - [ ] Generating Sudoku Puzzle of specific difficulty level
 
 #### Minor ToDos
-- long and descriptive names for testing functions instead of docstrings
-- better project structure
 - simple tests for cli module
 
 #### Things to check out
