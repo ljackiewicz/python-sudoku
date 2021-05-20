@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
+import random
+
 
 class SudokuGridError(Exception):
     pass
@@ -106,6 +108,10 @@ class Sudoku(object):
 
         return True
 
+    def _find_possibles(self, y, x):
+        """Finds possible digits in x,y position."""
+        return [digit for digit in range(1, 10) if self._possible(y, x, digit)]
+
     def solve(self) -> None:
         """Recursively solves Sudoku puzzle."""
         for y in range(9):
@@ -135,6 +141,27 @@ class Sudoku(object):
             self.show(self._solution)
         else:
             raise Exception("No solution was found for the given grid.")
+
+    def generate(self):
+        grid = [[0] * 9] * 9
+        positions = [(i, j) for i in range(9) for j in range(9)]
+
+        number = random.randint(0, len(positions) - 1)
+        position = positions.pop(number)
+
+        x, y = position
+        number = random.randint(1, 9)
+        if self._possible(y, x, number):
+            grid[y][x] = random.randint()
+
+        # self.show(grid)
+        #
+        # for y in range(9):
+        #     for x in range(9):
+        #         digit = random.randint(1, 9)
+        #
+        #         if self._possible(y, x, digit):
+        #             grid[x][y] = digit
 
     @staticmethod
     def show(grid: list) -> None:
@@ -169,7 +196,9 @@ def main():
 
     sudoku = Sudoku(grid)
 
-    sudoku.solve_puzzle()
+    # sudoku.solve_puzzle()
+
+    sudoku.generate()
 
 
 if __name__ == "__main__":
