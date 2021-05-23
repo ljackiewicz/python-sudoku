@@ -29,6 +29,8 @@ poetry run python -m sudoku.base
 #### Running unit tests
 ```shell
 poetry run python -m unittest -v
+# or
+poetry run pytest -v
 ```
 
 ## ToDos
